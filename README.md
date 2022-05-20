@@ -10,7 +10,7 @@ A front-line person can
 
 - annotate a business process model with domain-specific language (DSL), in order to intervene in the behavior of the business process;
 
-- bind third-party APIs, in order to query information.
+- bind third-party APIs, in order to query information that is helpful in reacting to long-tailed changes.
 
 A back-end person can
 
@@ -24,21 +24,29 @@ Our tool can
 
 - verify whether a process model still meets functional and non-functional constraints after the reaction to long-tailed changes.
 
+## Requirements
+
+This project is developed using Java 11, Maven 3.6, Node.js 14.16, and Npm 6.14.
+
 ## Run
 
-First, run subproject `engine-backend`. It is a process engine powered by Camunda. The process engine can be accessed at http://localhost:8082/ . The default user is admin/admin.
+First, run subproject `engine-backend` with command `mvn spring-boot:run`. It is a process engine powered by Camunda. The process engine can be accessed at http://localhost:8082/ . The default user is admin/admin.
 
-Then, run subproject `compiler-backend`. It is our tool to convert process models and verify functional and non-functional constraints.
+Then, run subproject `compiler-backend` with command `mvn spring-boot:run`. It is our tool to convert process models and verify functional and non-functional constraints.
 
-Next, run subproject `dsl-frontend`. It is the front end of our tool. Our tool can be accessed at http://localhost:8093/ .
+Next, run subproject `dsl-frontend` with command `npm run start`. It is the front end of our tool. Our tool can be accessed at http://localhost:8093/ .
 
 This is the homepage of our tool:
 
 ![dsl-frontend-index.png](image/dsl-frontend.png)
 
+### Annotation
+
 `Annotation` is for a front-line person to annotate a process model:
 
 ![dsl-frontend-annotation.png](image/dsl-frontend-annotation.png)
+
+Usage:
 
 - Open a process model. Click `Choose File` to choose a .bpmn file and click `Open` to open the process model.
 
@@ -48,9 +56,13 @@ This is the homepage of our tool:
 
 - Deploy the process model. Click `Deploy with annotation` to deploy the annotated process model. An example is `process-example/online-grocery-annotation.bpmn`.
 
+### Constraint
+
 `Constraint` is for a back-end person to specify functional and non-functional constraints on a process model:
 
 ![dsl-frontend-constraint.png](image/dsl-frontend-constraint.png)
+
+Usage:
 
 - Open a process model. Click `Choose File` to choose a .bpmn file and click `Open` to open the process model.
 
@@ -60,10 +72,18 @@ This is the homepage of our tool:
 
 - Verify the constraints. Set the start node name and click `Verify`.
 
+### Third-party API
+
 `Third-party API` is for a front-line person to bind third-party APIs:
 
 ![dsl-frontend-third-party-api.png](image/dsl-frontend-third-party-api.png)
 
+### Value Range
+
 `Value Range` is for a back-end person to specify the value ranges of the process variables in a process model:
 
 ![dsl-frontend-value-range.png](image/dsl-frontend-value-range.png)
+
+## Case Study
+
+A case study of an e-commerce scenario is available in directory `case-study`.
